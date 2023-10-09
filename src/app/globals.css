@@ -15,6 +15,15 @@
   .btn-secondary {
     @apply bg-white border border-purple text-purple active:bg-light-purple disabled:text-purple/25 disabled:border-purple/25;
   }
+
+  .tab {
+    @apply rounded-lg inline-flex gap-2 items-center hover:text-purple cursor-pointer;
+    padding: 11px 27px;
+  }
+
+  .tab-active {
+    @apply bg-light-purple;
+  }
 }
 
 @layer utilities {

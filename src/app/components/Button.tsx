@@ -12,7 +12,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={`btn ${
           variant == "primary" ? "btn-primary" : "btn-secondary"
-        }`}
+        } ${className}`}
         {...buttonProps}
       />
     );
