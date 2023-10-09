@@ -10,8 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         purple: "#633CFF",
-        "purple-hover-color": "#BEADFF",
-        "light-purple": "EFEBFF",
+        "purple-hover": "#BEADFF",
+        "light-purple": "#EFEBFF",
         "dark-grey": "#333333",
         grey: "#737373",
         borders: "#D9D9D9",

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn {
+    @apply rounded-lg flex w-full justify-center items-center disabled:pointer-events-none;
+    padding: 11px 27px;
+  }
+
+  .btn-primary {
+    @apply bg-purple text-white active:bg-purple-hover active:shadow-focus-input disabled:bg-purple/25;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-purple text-purple active:bg-light-purple disabled:text-purple/25 disabled:border-purple/25;
+  }
+}
+
 @layer utilities {
   .heading-m {
     color: #333333;
