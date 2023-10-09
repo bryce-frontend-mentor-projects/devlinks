@@ -8,10 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_68ed090f40ee2b8",
+    "icons": "npx @svgr/cli --typescript --expand-props --ref --title-prop --icon --out-dir src/app/icons --replace-attr-values '#737373'=currentColor --index-template index-template.js -- src/images"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
+    "@react-spring/web": "^9.7.3",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18"
@@ -26,20 +30,25 @@
     "@storybook/nextjs": "^7.4.6",
     "@storybook/react": "^7.4.6",
     "@storybook/testing-library": "^0.2.2",
+    "@svgr/cli": "^8.1.0",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "chromatic": "^7.2.3",
     "css-loader": "^6.8.1",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "eslint-plugin-storybook": "^0.6.15",
+    "file-loader": "^6.2.0",
     "postcss": "^8",
     "postcss-loader": "^7.3.3",
     "storybook": "^7.4.6",
     "style-loader": "^3.3.3",
     "tailwindcss": "^3",
     "typescript": "^5"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "devlinks@0.1.0"
 }

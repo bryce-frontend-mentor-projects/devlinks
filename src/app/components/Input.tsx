@@ -1,33 +1,34 @@
-import Image from "next/image";
-import { forwardRef } from "react";
-import { Slot } from "@radix-ui/react-slot";
+import React, { ComponentPropsWithoutRef, forwardRef, useState } from "react";
+import { Field } from "./Field";
 
-export interface InputProps extends React.ComponentPropsWithoutRef<"input"> {
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
-  error?: boolean;
+export interface InputProps extends ComponentPropsWithoutRef<"input"> {
+  onValueChange?: (value: string) => void;
+
+  icon?: React.ReactNode;
 }
 
-export const Input = forwardRef<HTMLElement, InputProps>((props, ref) => {
-  const { iconLeft, iconRight, error = false, ...htmlProps } = props;
-
-  const slotProps = {
-    className:
-      "flex-1 placeholder:text-dark-grey/50 focus:outline-none text-left",
-    ...htmlProps,
-  };
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const {
+    placeholder = "Text Field Empty",
+    value,
+    onValueChange,
+    icon,
+    ...htmlProps
+  } = props;
 
   return (
-    <div
-      className={`flex relative gap-3 border border-borders focus-within:border-purple focus-within:shadow-focus-input rounded-lg py-3 px-4 ${
-        error ? "border-red" : ""
-      }`}
-    >
-      {iconLeft && <>{iconLeft}</>}
-      <Slot {...slotProps} />
-      {error && <span className="text-red">Please Check Again</span>}
-      {iconRight && <>{iconRight}</>}
-    </div>
+    <Field iconLeft={icon}>
+      <input
+        ref={ref}
+        type="text"
+        placeholder="Text Field Empty"
+        {...htmlProps}
+        value={value}
+        onChange={(e) => {
+          onValueChange?.(e.target.value);
+        }}
+      />
+    </Field>
   );
 });
 

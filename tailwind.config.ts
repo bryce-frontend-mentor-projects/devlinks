@@ -25,6 +25,7 @@ const config: Config = {
 
       boxShadow: {
         "focus-input": "0px 0px 32px 0px rgba(99, 60, 255, 0.25)",
+        popover: "0px 0px 32px 0px rgba(0, 0, 0, 0.10)",
       },
     },
   },

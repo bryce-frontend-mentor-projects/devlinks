@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import * as path from "path";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -8,35 +9,39 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "@storybook/addon-styling-webpack",
-    ({
+    {
       name: "@storybook/addon-styling-webpack",
 
       options: {
-        rules: [{
-      test: /\.css$/,
-      sideEffects: true,
-      use: [
-          require.resolve("style-loader"),
+        rules: [
           {
-              loader: require.resolve("css-loader"),
-              options: {
-                  
+            test: /\.css$/,
+            sideEffects: true,
+            use: [
+              require.resolve("style-loader"),
+              {
+                loader: require.resolve("css-loader"),
+                options: {
                   importLoaders: 1,
+                },
               },
-          },{
-    loader: require.resolve("postcss-loader"),
-    options: {
-    implementation: require.resolve("postcss"),
+              {
+                loader: require.resolve("postcss-loader"),
+                options: {
+                  implementation: require.resolve("postcss"),
+                },
+              },
+            ],
+          },
+        ],
+      },
     },
-    },
-      ],
-    },],
-      }
-    })
   ],
   framework: {
     name: "@storybook/nextjs",
-    options: {},
+    options: {
+      nextConfigPath: path.resolve(__dirname, "../next.config.js"),
+    },
   },
   docs: {
     autodocs: "tag",
