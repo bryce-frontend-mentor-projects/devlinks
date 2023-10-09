@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_68ed090f40ee2b8",
+    "chromatic": "npx chromatic --exit-zero-on-changes",
     "icons": "npx @svgr/cli --typescript --expand-props --ref --title-prop --icon --out-dir src/app/icons --replace-attr-values '#737373'=currentColor --index-template index-template.js -- src/images"
   },
   "dependencies": {
