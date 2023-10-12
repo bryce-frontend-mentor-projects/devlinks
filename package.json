@@ -13,10 +13,17 @@
     "icons": "npx @svgr/cli --typescript --expand-props --ref --title-prop --icon --out-dir src/app/icons --replace-attr-values '#737373'=currentColor --index-template index-template.js -- src/images"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.427.0",
+    "@aws-sdk/s3-request-presigner": "^3.427.0",
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.11.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-spring/web": "^9.7.3",
+    "@vercel/postgres": "^0.5.0",
+    "csstype": "^3.1.2",
     "next": "13.5.4",
+    "next-cloudinary": "^4.24.0",
     "react": "^18",
     "react-dom": "^18"
   },
