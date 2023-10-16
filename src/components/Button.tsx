@@ -2,7 +2,7 @@ import React, { ComponentPropsWithoutRef, forwardRef } from "react";
 
 export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   variant?: "primary" | "secondary";
-  onClick: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -16,7 +16,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...buttonProps}
       />
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

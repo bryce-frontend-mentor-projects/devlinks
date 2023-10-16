@@ -1,14 +1,14 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { db } from "@/lib/db/schema";
+import { db, users } from "@/lib/db/schema";
 import { NextAuthOptions } from "next-auth";
-import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
-import CognitoProvider from "next-auth/providers/cognito";
-import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { eq } from "drizzle-orm";
 
 export const authOptions: NextAuthOptions = {
   // adapter: DrizzleAdapter<PostgresJsDatabase>(db),
   secret: process.env.NEXTAUTH_SECRET!,
+  debug: true,
+  adapter: DrizzleAdapter(db),
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -18,8 +18,22 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         console.log("CREDS", credentials);
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
-        return user;
+
+        try {
+          const foundUser = await db
+            .select()
+            .from(users)
+            .where(eq(users.email, credentials!.username));
+
+          console.log("FOUNDUSER", foundUser);
+          if (foundUser && foundUser.length !== 0) {
+            const user = foundUser[0];
+            return user;
+          }
+        } catch (error) {
+          console.log("ERROR", error);
+        }
+        return null;
       },
     }),
     // CognitoProvider({
@@ -27,24 +41,21 @@ export const authOptions: NextAuthOptions = {
     //   clientSecret: process.env.COGNITO_CLIENT_SECRET!,
     //   issuer: process.env.COGNITO_ISSUER,
     // }),
-    // GitHubProvider({
-    //   clientId: process.env.GITHUB_ID!,
-    //   clientSecret: process.env.GITHUB_SECRET!,
-    // }),
   ],
   session: { strategy: "jwt" },
   callbacks: {
     async session({ session, token }) {
-      console.log("ASESSION: ", session, token);
+      console.log("SESSION CALLBACK", session, token);
       return session;
     },
     async jwt({ token, user }) {
-      console.log("JWT", token, user);
+      console.log("JWT CALLBACK", token, user);
 
       return token;
     },
   },
   pages: {
     signIn: "/signin",
+    newUser: "/register",
   },
 };

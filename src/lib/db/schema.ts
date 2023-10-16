@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { sql } from "@vercel/postgres";
 import {
   text,
   pgTable,
@@ -6,7 +6,7 @@ import {
   integer,
   primaryKey,
 } from "drizzle-orm/pg-core";
-import { drizzle } from "drizzle-orm/postgres-js";
+import { drizzle } from "drizzle-orm/vercel-postgres";
 import { AdapterAccount } from "next-auth/adapters";
 
 export const users = pgTable("user", {
@@ -36,7 +36,7 @@ export const accounts = pgTable(
   },
   (account) => ({
     compoundKey: primaryKey(account.provider, account.providerAccountId),
-  })
+  }),
 );
 
 export const sessions = pgTable("session", {
@@ -56,8 +56,15 @@ export const verificationTokens = pgTable(
   },
   (vt) => ({
     compoundKey: primaryKey(vt.identifier, vt.token),
-  })
+  }),
 );
 
 export const schema = { users, accounts, sessions, verificationTokens };
 export const db = drizzle(sql);
+
+const ex = async () => {
+  const results = await db.select().from(users);
+  console.log("RESULTS", results);
+};
+
+ex();

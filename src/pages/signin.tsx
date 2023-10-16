@@ -1,19 +1,13 @@
-"use client";
-import React from "react";
-import {
-  IconEmail,
-  IconGithub,
-  IconPassword,
-  LogoDevlinksLarge,
-  LogoDevlinksSmall,
-} from "../icons";
-import { Input } from "@/app/components/Input";
-import { Button } from "../components/Button";
+import { IconEmail, IconPassword, LogoDevlinksLarge } from "@/icons";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getCsrfToken } from "next-auth/react";
+import { Input, Button } from "@/components";
 
-export interface SignInProps {}
-
-const SignIn = async (props: SignInProps) => {
+const Signin = ({
+  csrfToken,
+  ...rest
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  console.log("REST", rest);
   return (
     <div className="flex min-h-screen flex-col p-8 gap-16 text-dark-grey">
       <div>
@@ -31,6 +25,7 @@ const SignIn = async (props: SignInProps) => {
           method="POST"
           action="/api/auth/callback/credentials"
         >
+          <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
           <div>
             <label>Email address</label>
             <Input
@@ -55,4 +50,12 @@ const SignIn = async (props: SignInProps) => {
   );
 };
 
-export default SignIn;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  };
+}
+
+export default Signin;
