@@ -5,8 +5,6 @@ import { signIn } from "next-auth/react";
 export default async function Admin() {
   const session = await getServerSession(authOptions);
 
-  console.log("SESSION", session);
-
   // if (!session) {
   //
   //   signIn("cognito");
