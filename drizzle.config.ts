@@ -6,7 +6,6 @@ export default {
   driver: "pg",
   out: "./drizle",
   dbCredentials: {
-    connectionString:
-      "postgres://default:3He6WsAwELnx@ep-silent-hall-92993129-pooler.us-east-1.postgres.vercel-storage.com/verceldb?sslmode=require",
+    connectionString: process.env.POSTGRES_URL!,
   },
 } satisfies Config;

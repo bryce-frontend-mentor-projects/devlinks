@@ -1,4 +1,5 @@
 import { sql } from "@vercel/postgres";
+import pg, { Pool } from "pg";
 import {
   text,
   pgTable,
@@ -61,10 +62,3 @@ export const verificationTokens = pgTable(
 
 export const schema = { users, accounts, sessions, verificationTokens };
 export const db = drizzle(sql);
-
-const ex = async () => {
-  const results = await db.select().from(users);
-  console.log("RESULTS", results);
-};
-
-ex();
