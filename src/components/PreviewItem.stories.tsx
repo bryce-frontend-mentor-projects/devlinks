@@ -1,6 +1,6 @@
 import { StoryObj, Meta } from "@storybook/react";
 import { PreviewItem } from "./PreviewItem";
-import { platforms } from "../data/platforms";
+import { platforms } from "../app_old/data/platforms";
 
 const meta = {
   component: PreviewItem,

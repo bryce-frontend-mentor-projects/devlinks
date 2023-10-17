@@ -11,7 +11,7 @@ import {
   IconChevronDown,
   IconLink,
 } from "../icons";
-import { PlatformType } from "../data/types";
+import { PlatformType } from "../app_old/data/types";
 
 const emptyValue = {
   id: -1,
@@ -98,7 +98,7 @@ export const DropdownField = forwardRef<HTMLButtonElement, DropdownFieldProps>(
         </Popover.Portal>
       </Popover.Root>
     );
-  }
+  },
 );
 
 DropdownField.displayName = "DropdownField";

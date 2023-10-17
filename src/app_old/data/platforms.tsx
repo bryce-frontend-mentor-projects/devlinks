@@ -1,4 +1,4 @@
-import * as Icons from "../icons";
+import * as Icons from "../../icons";
 import { PlatformType } from "./types";
 export const platforms: PlatformType[] = [
   {

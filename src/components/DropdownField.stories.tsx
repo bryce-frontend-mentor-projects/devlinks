@@ -2,8 +2,8 @@ import { StoryObj, Meta } from "@storybook/react";
 import { DropdownField } from "./DropdownField";
 import Image from "next/image";
 import IconLink from "../../images/icon-link.svg";
-import { platforms } from "../data/platforms";
-import { PlatformType } from "../data/types";
+import { platforms } from "../app_old/data/platforms";
+import { PlatformType } from "../app_old/data/types";
 import { useArgs } from "@storybook/preview-api";
 
 const meta = {

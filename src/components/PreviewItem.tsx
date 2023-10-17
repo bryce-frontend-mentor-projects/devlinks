@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from "react";
-import { PlatformType } from "../data/types";
+import { PlatformType } from "../app_old/data/types";
 import { IconArrowRight } from "../icons";
 
 export type PreviewItemProps = Omit<ComponentPropsWithoutRef<"div">, "id"> &
@@ -22,7 +22,7 @@ export const PreviewItem = forwardRef<HTMLDivElement, PreviewItemProps>(
         <IconArrowRight />
       </div>
     );
-  }
+  },
 );
 
 PreviewItem.displayName = "PreviewItem";
