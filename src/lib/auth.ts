@@ -20,6 +20,7 @@ export const authOptions: NextAuthOptions = {
         console.log("CREDS", credentials);
 
         try {
+          console.log("PREFOUND USER!!!!");
           const foundUser = await db
             .select()
             .from(users)
@@ -36,11 +37,6 @@ export const authOptions: NextAuthOptions = {
         return null;
       },
     }),
-    // CognitoProvider({
-    //   clientId: process.env.COGNITO_CLIENT_ID!,
-    //   clientSecret: process.env.COGNITO_CLIENT_SECRET!,
-    //   issuer: process.env.COGNITO_ISSUER,
-    // }),
   ],
   session: { strategy: "jwt" },
   callbacks: {
